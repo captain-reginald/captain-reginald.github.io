@@ -21,7 +21,7 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   background-color: var(--bg);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cg stroke='%23e9e4d8' stroke-opacity='.045' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M34 14l-10 24'/%3E%3Cpath d='M84 50l-10 24'/%3E%3Cpath d='M140 8l-10 24'/%3E%3Cpath d='M58 104l-10 24'/%3E%3Cpath d='M122 122l-10 24'/%3E%3Cpath d='M12 142l-10 24'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cg stroke='%23e9e4d8' stroke-opacity='.03' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M34 14l-10 24'/%3E%3Cpath d='M84 50l-10 24'/%3E%3Cpath d='M140 8l-10 24'/%3E%3Cpath d='M58 104l-10 24'/%3E%3Cpath d='M122 122l-10 24'/%3E%3Cpath d='M12 142l-10 24'/%3E%3C/g%3E%3C/svg%3E");
   color: var(--text);
   font-family: var(--sans);
   font-size: 17px;
@@ -169,3 +169,5 @@ p { margin: 0 0 1rem; }
   .top nav { gap: .7rem; font-size: .74rem; }
   .kicker { font-size: .68rem; }
 }
+
+.brand { white-space: nowrap; }
