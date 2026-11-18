@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>captain-reginald</title>
+<meta name="description" content="Captain Reginald — Rain Log, a rainfall tracker for Omarchy, the web, and the desktop; and Captain's Cabin, a small Minecraft server.">
+<meta name="theme-color" content="#171411">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://captain-reginald.github.io/">
+<meta property="og:title" content="captain-reginald">
+<meta property="og:description" content="Rain Log for Omarchy, the browser, and the desktop — plus Captain's Cabin, a small Minecraft server.">
+<meta property="og:image" content="https://captain-reginald.github.io/rainlog/assets/server-dashboard.png">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="brand" href="/" aria-label="captain-reginald — home">
+      <svg width="17" height="17" viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M33.4 11.5c7.6 9.9 11.9 16.4 11.9 22.8a13.3 13.3 0 1 1-24.6 6" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      captain-reginald
+    </a>
+    <nav aria-label="Site">
+      <a href="/rainlog/">Rain&nbsp;Log</a>
+      <a href="#cabin">Captain's&nbsp;Cabin</a>
+      <a href="https://github.com/captain-reginald" rel="me">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <p class="kicker">homelab<span class="sep">/</span>omarchy<span class="sep">/</span>self-hosted</p>
+    <h1>Captain Reginald</h1>
+    <p class="lede">I run a small homelab on Omarchy and Linux, and most of what I build stays close to home: plain files, self-hosted services, no accounts, no telemetry. When something turns out to be useful to other people, it goes on GitHub.</p>
+  </section>
+
+  <section class="block" id="rainlog" aria-labelledby="h-rainlog">
+    <h2 id="h-rainlog"><span class="h-num">01</span>Rain Log</h2>
+    <div class="teaser">
+      <div>
+        <a class="shot" href="/rainlog/" aria-label="Read the Rain Log overview">
+          <img src="/rainlog/assets/server-dashboard.png" alt="Rain Log web dashboard: today's gauge input, rolling totals for 24 hours through the year, recent rainy days, and a 30-day bar chart" width="1440" height="1024" loading="lazy">
+        </a>
+        <p class="shot-cap">The web dashboard. The plugin and the desktop app show the same numbers.</p>
+      </div>
+      <div>
+        <h3>My rain gauge, minus the guesswork</h3>
+        <p>Rain Log turns the number on a backyard rain gauge into rolling totals you can plan around: the week, the month, the season. Three releases, one shared <code>rainlog.json</code> — an Omarchy bar plugin, a self-hosted web app, and a desktop companion for everything that isn't Hyprland.</p>
+        <p><a class="arrow-link" href="/rainlog/">How the three fit together →</a></p>
+        <ul class="repolinks">
+          <li><a href="https://github.com/captain-reginald/omarchy-rain-log">omarchy-rain-log</a></li>
+          <li><a href="https://github.com/captain-reginald/rainlog-server">rainlog-server</a></li>
+          <li><a href="https://github.com/captain-reginald/rainlog-desktop">rainlog-desktop</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="cabin" aria-labelledby="h-cabin">
+    <h2 id="h-cabin"><span class="h-num">02</span>Captain's Cabin</h2>
+    <p>A Minecraft server I host from home. Survival, slow and steady, with a live map of the world on the website.</p>
+    <dl class="facts">
+      <div>
+        <dt>Address</dt>
+        <dd><code>captainscabin.ddns.net</code><br>Default port — add it in multiplayer and it connects.</dd>
+      </div>
+      <div>
+        <dt>World map</dt>
+        <dd><a href="http://captainscabin.ddns.net:8123">captainscabin.ddns.net:8123</a><br>Live render of the world; refreshes as things change.</dd>
+      </div>
+      <div>
+        <dt>Version</dt>
+        <dd>26.3 — <em>Wilderness Bound</em></dd>
+      </div>
+      <div>
+        <dt>Discord</dt>
+        <!-- DISCORD-INVITE: replace the <span class="pill">…</span> with
+             <a href="https://discord.gg/YOUR-INVITE">Join the Discord</a>
+             when the invite link is final. Discord's server verification
+             gates entry; the page itself does not. -->
+        <dd>A small Discord for whoever plays on the cabin. Entry is gated by Discord's server verification.<br><span class="pill">invite link coming soon</span></dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="block" aria-labelledby="h-elsewhere">
+    <h2 id="h-elsewhere"><span class="h-num">03</span>Elsewhere</h2>
+    <p>Everything I publish lives on GitHub: <a href="https://github.com/captain-reginald?tab=repositories">my repositories</a>. The Rain Log projects are linked above; the Omarchy plugin and both apps are where most of my commits go.</p>
+    <p class="small-note">Issues and pull requests are the fastest way to reach me about any of this.</p>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <span>© 2026 captain-reginald</span>
+    <span>hand-written HTML and CSS, no trackers</span>
+    <a href="https://github.com/captain-reginald">github.com/captain-reginald</a>
+  </div>
+</footer>
+
+</body>
+</html>

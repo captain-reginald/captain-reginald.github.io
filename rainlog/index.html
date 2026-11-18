@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rain Log — captain-reginald.github.io</title>
+<meta name="description" content="Rain Log in three releases: an Omarchy bar plugin, a self-hosted web app for your LAN, and a desktop companion for Linux and Windows. All of them read and write the same rainlog.json.">
+<meta name="theme-color" content="#171411">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://captain-reginald.github.io/rainlog/">
+<meta property="og:title" content="Rain Log — three releases, one data file">
+<meta property="og:description" content="An Omarchy bar plugin, a self-hosted web app, and a desktop companion for Windows and Linux. All read and write the same rainlog.json.">
+<meta property="og:image" content="https://captain-reginald.github.io/rainlog/assets/server-dashboard.png">
+<link rel="stylesheet" href="/rainlog/style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="brand" href="/" aria-label="captain-reginald — home">
+      <svg width="17" height="17" viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M33.4 11.5c7.6 9.9 11.9 16.4 11.9 22.8a13.3 13.3 0 1 1-24.6 6" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      captain-reginald
+    </a>
+    <nav aria-label="Rain Log">
+      <a href="#plugin">Plugin</a>
+      <a href="#server">Server</a>
+      <a href="#desktop">Desktop</a>
+      <a href="https://github.com/captain-reginald/rainlog-server">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="page-head">
+    <p class="crumb"><a href="/">← captain-reginald.github.io</a></p>
+    <p class="kicker" style="margin-top: 1.4rem;">three releases · one data file</p>
+    <h1>Rain Log</h1>
+    <p class="lede">A rain gauge in the yard knows more than the weather app does. Rain Log keeps a calendar of your daily readings in one small JSON file and turns it into rolling totals you can actually use: the last 24 hours, the week, the month, the season, the year. Every release does the same job on a different surface, and they all agree on the file.</p>
+
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr><th scope="col">Release</th><th scope="col">Where it runs</th><th scope="col">Get it</th><th scope="col">Status</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="#plugin">Omarchy Rain Log</a></td>
+            <td>Omarchy 4.x bar (Quickshell)</td>
+            <td><code>omarchy plugin add</code></td>
+            <td>Active, installs from main</td>
+          </tr>
+          <tr>
+            <td><a href="#server">Rain Log Server</a></td>
+            <td>Any machine with Docker, reached from your LAN</td>
+            <td>Compose file or <code>ghcr.io</code> image</td>
+            <td>v1.0.0</td>
+          </tr>
+          <tr>
+            <td><a href="#desktop">Rain Log Desktop</a></td>
+            <td>Linux (AppImage) and Windows 10 x64</td>
+            <td>AppImage / NSIS installer</td>
+            <td>v1.0.0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <section class="block" id="plugin" aria-labelledby="h-plugin">
+    <h2 id="h-plugin"><span class="h-num">01</span>Omarchy Rain Log — the plugin</h2>
+    <p class="release-title">The bar widget</p>
+    <p class="status">Omarchy 4.x · <a href="https://github.com/captain-reginald/omarchy-rain-log">github.com/captain-reginald/omarchy-rain-log</a></p>
+
+    <p>Rain Log lives in the Omarchy bar as a raindrop. Click it for the card: today's gauge reading in tenths of an inch, rolling totals for 24 hours, 72 hours, the week, the month and the season, a custom window (14 days by default), and your last five rainy days. Every total can be scrolled backwards with the arrows, so this week can be compared against last week without losing today.</p>
+
+    <p>Units match the markings on a US rain gauge: <code>23</code> means 2.3 inches. Entering <code>0</code>, or clearing the field, removes that day. Seasons are meteorological (Dec–Feb, Mar–May, Jun–Aug, Sep–Nov).</p>
+
+    <figure class="figure">
+      <img src="/rainlog/assets/plugin-preview.png" alt="Rain Log plugin card open from the Omarchy bar: today's reading of 23 tenths, rolling totals for 24 hours, 72 hours, week, month, season and a 14-day custom window" width="660" height="620" loading="lazy">
+      <figcaption>The card, opened from the bar. The settings gear and bar readout live in the same panel.</figcaption>
+    </figure>
+
+    <h3 class="kicker" style="margin-top:1.4rem;">Install</h3>
+    <pre class="cmd"><span class="c"># requires Omarchy 4.x with omarchy-shell</span>
+omarchy plugin add https://github.com/captain-reginald/omarchy-rain-log --enable
+
+<span class="c"># without --enable, or to pick where it sits on the bar</span>
+omarchy plugin enable io.github.captain-reginald.rainlog
+
+<span class="c"># later, to pull the newest version</span>
+omarchy plugin update io.github.captain-reginald.rainlog</pre>
+
+    <ul>
+      <li>Bar shows a plain raindrop by default; a count can be enabled and set to daily, weekly, monthly, seasonal or yearly.</li>
+      <li>Calendar editor for filling in missed days or fixing a typo.</li>
+      <li>Custom range window (14 days by default) for any time frame you care about.</li>
+      <li>Follows the active Omarchy theme: colors, typography, spacing, corner radius.</li>
+      <li>No background service; the shell reads the JSON file directly.</li>
+    </ul>
+
+    <div class="shot-row">
+      <figure class="figure">
+        <img src="/rainlog/assets/plugin-calendar.png" alt="Edit History calendar for November 2026, showing daily totals and an entry field for the selected day" loading="lazy">
+        <figcaption>Edit History — click any day, type the reading, press Enter.</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="/rainlog/assets/plugin-settings.png" alt="Plugin settings page with the data file path, the bar count toggle and the total to display" loading="lazy">
+        <figcaption>Settings — data file path, and what the bar shows.</figcaption>
+      </figure>
+    </div>
+
+    <p class="repo-line">Repo: <a href="https://github.com/captain-reginald/omarchy-rain-log">captain-reginald/omarchy-rain-log</a> · GPL-3.0</p>
+  </section>
+
+  <section class="block" id="server" aria-labelledby="h-server">
+    <h2 id="h-server"><span class="h-num">02</span>Rain Log Server — the web app</h2>
+    <p class="release-title">The big screen and the phone</p>
+    <p class="status">v1.0.0 · <a href="https://github.com/captain-reginald/rainlog-server">github.com/captain-reginald/rainlog-server</a> · <a href="https://github.com/captain-reginald/rainlog-server/releases">releases</a></p>
+
+    <p>A small, self-hosted web companion that reads and writes the same <code>rainlog.json</code>, so a synced folder gives you the bar widget on the desktop and this app on everything else. No database, no accounts, no telemetry — one JSON file, a few flat companion files, one container on port <code>8080</code>.</p>
+
+    <pre class="cmd">git clone https://github.com/captain-reginald/rainlog-server.git
+cd rainlog-server
+docker compose up -d
+<span class="c"># then open http://&lt;host-ip&gt;:8080</span></pre>
+
+    <p>Prefer a prebuilt image? <code>ghcr.io/captain-reginald/rainlog-server:latest</code>, or pin <code>:v1.0.0</code> / <code>:1.0</code> / <code>:main</code>. Multi-arch: <code>linux/amd64</code> and <code>linux/arm64</code>. The compose file defaults to <code>PUID=1000</code>/<code>PGID=1000</code> and <code>America/Denver</code>; set your own timezone and IDs before starting.</p>
+
+    <ul>
+      <li>Rolling totals for the month, the season, the year, and one to three configurable windows of any length (up to 365 days) — each with back/forward stepping.</li>
+      <li>Local climate comparison: enter your locality and see where you stand against the 1991–2020 30-year normals, month by month.</li>
+      <li>Calendar editing for catching up or fixing a typo.</li>
+      <li>Charts: monthly totals, recorded vs. average by month, every year on record.</li>
+      <li>CSV and JSON import/export with a dry-run preview before anything is written.</li>
+      <li>Automatic snapshots in <code>.rainlog-backups/</code>; import/export; PWA shell for a home-screen icon.</li>
+      <li>Optional millimetre display — storage stays in tenths of an inch.</li>
+    </ul>
+
+    <figure class="figure">
+      <img src="/rainlog/assets/server-dashboard.png" alt="Rain Log web dashboard: big-screen view with rolling totals for 24 hours, 7 days, a configurable 30-day window, month, season and year" width="1440" height="1024" loading="lazy">
+      <figcaption>The dashboard — configurable windows, month, season and year, with stepping arrows on each total.</figcaption>
+    </figure>
+
+    <div class="shot-row">
+      <figure class="figure">
+        <img src="/rainlog/assets/server-charts.png" alt="Charts page: monthly totals for 2026, recorded versus 1991–2020 averages month by month, and every year on record" loading="lazy">
+        <figcaption>Charts, with the local 1991–2020 normals for comparison.</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="/rainlog/assets/server-history.png" alt="Calendar page: month grid with daily totals, side panel for recording or editing a reading" loading="lazy">
+        <figcaption>Calendar — the same editing model as the plugin and the desktop app.</figcaption>
+      </figure>
+    </div>
+
+    <div class="shot-row">
+      <figure class="figure">
+        <img src="/rainlog/assets/server-data.png" alt="Data page with import and export for JSON and CSV, including a dry-run preview" loading="lazy">
+        <figcaption>CSV/JSON import and export, dry-run before anything is written.</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="/rainlog/assets/server-settings.png" alt="Settings page: display units, dashboard windows, local climate normals, and server version" loading="lazy">
+        <figcaption>Settings — display units, dashboard windows, climate normals.</figcaption>
+      </figure>
+    </div>
+
+    <figure class="figure figure-phone">
+      <img src="/rainlog/assets/server-mobile.png" alt="The web app on a phone: today's reading and the rolling totals stacked in one column" loading="lazy">
+      <figcaption>Phone layout — installable as a PWA, readings always fetched live.</figcaption>
+    </figure>
+
+    <p class="repo-line">Repo: <a href="https://github.com/captain-reginald/rainlog-server">captain-reginald/rainlog-server</a> · image: <code>ghcr.io/captain-reginald/rainlog-server</code> · GPL-3.0</p>
+  </section>
+
+  <section class="block" id="desktop" aria-labelledby="h-desktop">
+    <h2 id="h-desktop"><span class="h-num">03</span>Rain Log Desktop — the app</h2>
+    <p class="release-title">The card, as a window</p>
+    <p class="status">v1.0.0 · <a href="https://github.com/captain-reginald/rainlog-desktop">github.com/captain-reginald/rainlog-desktop</a> · <a href="https://github.com/captain-reginald/rainlog-desktop/releases/latest">releases</a></p>
+
+    <p>The same card the plugin opens, packaged as an ordinary application. It exists for desktops that aren't Hyprland, and for Windows. Frameless window, slim drag strip with minimize/close, no tray icon, no background process — closing saves and quits.</p>
+
+    <p>On Linux it follows the Omarchy theme when one is present (colors, typography, spacing, corner radius) and falls back to a bundled palette otherwise; on Windows it uses the bundled palette. It adopts the plugin's configured data path on first run, so there is no migration step.</p>
+
+    <p>Download the latest release: <a href="https://github.com/captain-reginald/rainlog-desktop/releases/latest">Rain Log Desktop v1.0.0</a>.</p>
+    <ul>
+      <li><strong>Linux</strong> — <code>RainLog-v1.0.0-linux-x86_64.AppImage</code>, self-contained, no install required. A <code>.sha256</code> is published alongside it.</li>
+      <li><strong>Windows 10 x64</strong> — <code>RainLog-v1.0.0-windows-x64.exe</code>, NSIS installer; administrator approval required. Bundles the Visual C++ runtime and creates Start Menu and public Desktop shortcuts. A <code>.sha256</code> is published alongside it.</li>
+    </ul>
+
+    <pre class="cmd"><span class="c"># optional: install the AppImage into the application menu</span>
+chmod +x RainLog-v1.0.0-linux-x86_64.AppImage
+./RainLog-v1.0.0-linux-x86_64.AppImage --install
+
+<span class="c"># and later, remove it</span>
+~/Applications/RainLog-Desktop.AppImage --uninstall</pre>
+
+    <p class="kbd-note">On Hyprland, windows tile by default. If you want Rain Log Desktop to float like the plugin card:</p>
+    <pre class="cmd"><span class="c"># ~/.config/hypr/hyprland.lua</span>
+hl.window_rule({ name = "rainlog-desktop", match = { class = "rainlog-desktop" }, float = true })</pre>
+
+    <div class="shot-row">
+      <figure class="figure">
+        <img src="/rainlog/assets/desktop-main.png" alt="Rain Log Desktop main window: gauge input, rolling totals, recent rainy days" loading="lazy">
+        <figcaption>Main — same layout as the plugin card.</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="/rainlog/assets/desktop-history.png" alt="Rain Log Desktop calendar editor" loading="lazy">
+        <figcaption>History — month calendar, same editing model.</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="/rainlog/assets/desktop-settings.png" alt="Rain Log Desktop settings view" loading="lazy">
+        <figcaption>Settings — range window and file path.</figcaption>
+      </figure>
+    </div>
+
+    <p class="repo-line">Repo: <a href="https://github.com/captain-reginald/rainlog-desktop">captain-reginald/rainlog-desktop</a> · GPL-3.0</p>
+  </section>
+
+  <section class="block" id="together" aria-labelledby="h-together">
+    <h2 id="h-together"><span class="h-num">04</span>How they fit together</h2>
+    <ol>
+      <li>The plugin (or the desktop app) is the writer. You enter the gauge reading; the file is rewritten atomically with two-space JSON and sorted keys, so sync diffs stay small.</li>
+      <li>Point the data file path at a folder your sync tool already carries — Syncthing, Resilio, a git repo, anything file-based. The plugin creates <code>rainlog.json</code> on first run if it's missing.</li>
+      <li>The server, pointed at the same folder, re-reads the file every five seconds and re-reads before each write, merging only the days you touched. A snapshot is taken if the file changed underneath it.</li>
+      <li>None of the three requires the others. Use the plugin alone on one machine; use the server alone on a NAS; use the desktop app on a Windows laptop and sync everything.</li>
+    </ol>
+
+    <p class="kbd-note">Concurrent editing from two devices at once is best avoided — sync first, then edit. The server narrows the window but can't remove it. Web-only preferences live in <code>rainlog-web.json</code> next to the data file and are never written into <code>rainlog.json</code>.</p>
+  </section>
+
+  <section class="block" id="data" aria-labelledby="h-data">
+    <h2 id="h-data"><span class="h-num">05</span>The data file</h2>
+    <p>Everything revolves around one file. The default path is <code>~/Documents/rainlog/rainlog.json</code> — the plugin's setting wins if it disagrees, and the desktop app adopts the plugin's configured path on first run.</p>
+    <pre class="cmd">{
+  "entries": {
+    "2026-11-14": 23,
+    "2026-11-15": 12
+  }
+}</pre>
+    <ul>
+      <li>Values are whole tenths of an inch, keyed by local calendar date (<code>YYYY-MM-DD</code>).</li>
+      <li>A missing key means no rain that day. Entering <code>0</code> deletes the entry — there is no zero rain measurement, only "didn't rain".</li>
+      <li>Date keys are validated as real days; values must be integers from 1 to 9999.</li>
+      <li>Two-space JSON, sorted keys, no trailing newline — small diffs, friendlier syncing.</li>
+      <li>The server preserves unknown top-level keys it doesn't understand; it will also refuse to write if the file is corrupt rather than replace it.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <a href="/">← captain-reginald.github.io</a>
+    <span>Rain Log is GPL-3.0</span>
+    <span>issues and PRs on the relevant repo</span>
+    <a href="https://github.com/captain-reginald">github.com/captain-reginald</a>
+  </div>
+</footer>
+
+</body>
+</html>
