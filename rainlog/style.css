@@ -184,7 +184,8 @@ figcaption {
 /* ---------- responsive ---------- */
 
 @media (max-width: 700px) {
-  .top nav { gap: .7rem; font-size: .74rem; }
+  .top-inner { flex-wrap: wrap; row-gap: .15rem; padding: .55rem 1.1rem; }
+  .top nav { gap: .65rem; font-size: .7rem; }
   .kicker { font-size: .68rem; }
   .shot-row { grid-template-columns: 1fr; }
 }

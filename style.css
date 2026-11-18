@@ -166,7 +166,8 @@ p { margin: 0 0 1rem; }
 @media (max-width: 700px) {
   .teaser { grid-template-columns: 1fr; }
   .facts > div { grid-template-columns: 1fr; gap: .1rem; padding: .7rem .1rem; }
-  .top nav { gap: .7rem; font-size: .74rem; }
+  .top-inner { flex-wrap: wrap; row-gap: .15rem; padding: .55rem 1.1rem; }
+  .top nav { gap: .65rem; font-size: .7rem; }
   .kicker { font-size: .68rem; }
 }
 
