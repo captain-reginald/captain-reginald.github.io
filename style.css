@@ -122,18 +122,32 @@ p.meta {
   margin: 1.4rem 0 0;
 }
 .thumbs figure { margin: 0; }
-.thumbs a {
+.thumbs .shot {
   display: block; overflow: hidden; background: #0c0b0a;
   aspect-ratio: 4 / 3;
   border: 1px solid var(--line); border-radius: 7px; transition: border-color .15s;
 }
-.thumbs a:hover { border-color: var(--accent-dim); }
+.thumbs .shot:hover { border-color: var(--accent-dim); }
 .thumbs img {
   display: block; width: 100%; height: 100%;
   object-fit: cover; object-position: top center;
 }
 .thumbs figcaption {
   margin-top: .45rem; font-family: var(--mono); font-size: .72rem; color: var(--muted);
+}
+
+/* ---------- buttons ---------- */
+
+.btn {
+  display: inline-block; margin-top: .6rem; padding: .5rem 1.15rem;
+  border: 1px solid var(--accent-dim); border-radius: 6px;
+  font-family: var(--mono); font-size: .8rem; letter-spacing: .04em;
+  color: var(--accent); text-decoration: none;
+  transition: background-color .15s, border-color .15s, color .15s;
+}
+.btn:hover {
+  background: var(--accent); border-color: var(--accent);
+  color: #14120f; text-decoration: none;
 }
 
 /* ---------- landing: facts ---------- */
