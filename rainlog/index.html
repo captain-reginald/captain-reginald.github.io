@@ -6,7 +6,7 @@
 <title>Rain Log — Captain Reginald</title>
 <meta name="description" content="Rain Log: a rainfall journal for the Omarchy bar, the LAN, and the desktop. Three releases, one rainlog.json, a decade of seasonal totals.">
 <meta name="theme-color" content="#121110">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/rainlog/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://captain-reginald.github.io/rainlog/">
 <meta property="og:title" content="Rain Log — three releases, one file">
@@ -14,7 +14,7 @@
 <meta property="og:image" content="https://captain-reginald.github.io/rainlog/assets/server-dashboard.png">
 <link rel="stylesheet" href="/style.css">
 </head>
-<body>
+<body class="rainlog">
 
 <header class="top">
   <div class="wrap top-inner">
@@ -143,7 +143,8 @@ chmod +x RainLog-v1.0.0-linux-x86_64.AppImage
 
     <p>On Hyprland, windows tile by default. To keep Rain Log floating like the plugin card:</p>
     <pre class="cmd"><span class="c"># ~/.config/hypr/hyprland.lua</span>
-hl.window_rule({ name = "rainlog-desktop", match = { class = "rainlog-desktop" }, float = true })</pre>
+hl.window_rule({ name = "rainlog-desktop",
+  match = { class = "rainlog-desktop" }, float = true })</pre>
 
     <div class="shot-row">
       <figure class="figure">
