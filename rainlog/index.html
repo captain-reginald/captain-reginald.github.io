@@ -41,7 +41,7 @@
   <section class="hero">
     <p class="crumb"><a href="/">← captain-reginald.github.io</a></p>
     <h1>Rain Log</h1>
-    <p class="lede">One rainfall journal, three places to keep it. Enter the day's gauge reading in tenths of an inch; Rain Log holds the totals for 24 hours, the week, the month, the season, the year. Everything is one <code>rainlog.json</code> you can sync, back up, or read by hand.</p>
+    <p class="lede">One rainfall journal, three places to keep it. Enter the day's rain gauge reading in tenths of an inch; Rain Log shows searchable totals for the last 24 hours, the week, the month, the season, the year, or any custom range of your choosing. Everything is one <code>rainlog.json</code> file you can sync, back up, or read by hand.</p>
 
     <div class="glance-wrap">
       <table class="glance">
@@ -51,12 +51,12 @@
         <tbody>
           <tr>
             <td><a href="#plugin">Omarchy Rain Log</a></td>
-            <td>Bar plugin, Omarchy 4.x</td>
+            <td>WayBar plugin, Omarchy 4.x</td>
             <td>installs from main</td>
           </tr>
           <tr>
             <td><a href="#server">Rain Log Server</a></td>
-            <td>Docker container, browser on the LAN</td>
+            <td>Docker container, web page on the LAN</td>
             <td>v1.0.0</td>
           </tr>
           <tr>
@@ -73,7 +73,7 @@
     <h2><span class="num">01</span>Omarchy Rain Log</h2>
     <p class="meta"><span>Bar plugin, Omarchy 4.x</span> <span>GPL-3.0</span> <a href="https://github.com/captain-reginald/omarchy-rain-log">github.com/captain-reginald/omarchy-rain-log</a></p>
 
-    <p>A raindrop in the bar, with the card behind it. Today's reading sits at the top; below are totals for 24 hours, 72 hours, the week, the month, the season, and a custom window (14 days by default). The arrows step any total back in time, and Edit History is a month calendar for missed days and typos.</p>
+    <p>A raindrop in the bar, with the card behind it. Today's reading sits at the top; below are totals for multiple date ranges. The arrows step any total back in time, and Edit History allows you to change historical data for previous dates in case you missed one.</p>
     <p>Readings match a US gauge: <code>23</code> means 2.3 inches, and zero clears the day.</p>
 
     <pre class="cmd"><span class="c"># install</span>
@@ -101,7 +101,7 @@ omarchy plugin update io.github.captain-reginald.rainlog</pre>
     <h2><span class="num">02</span>Rain Log Server</h2>
     <p class="meta"><span>Self-hosted web app</span> <span>v1.0.0</span> <a href="https://github.com/captain-reginald/rainlog-server">github.com/captain-reginald/rainlog-server</a> <a href="https://github.com/captain-reginald/rainlog-server/releases">releases</a></p>
 
-    <p>The big-screen and phone view of the same file. Configurable totals windows, month, season and year, charts against your area's 1991–2020 climate normals, calendar editing, CSV and JSON import/export with a dry run, automatic snapshots. It installs as a PWA, and readings always come from the server rather than a cache.</p>
+    <p>The big-screen and phone view of the same page. Configurable totals windows, month, season and year, charts against your area's 1991–2020 climate normals, calendar editing, CSV and JSON import/export with a dry run, automatic snapshots. It installs as a PWA, and readings always come from the server rather than a cache.</p>
 
     <pre class="cmd">git clone https://github.com/captain-reginald/rainlog-server.git
 cd rainlog-server
@@ -160,7 +160,7 @@ hl.window_rule({ name = "rainlog-desktop",
 
   <section class="entry" id="together">
     <h2><span class="num">04</span>How they fit together</h2>
-    <p>All three write the same <code>rainlog.json</code>, atomically and in two-space sorted JSON, so a synced folder — Syncthing, Resilio, a git repo — keeps every device current. The plugin watches the file; the server re-reads it every five seconds and, before writing, merges just the days it changed.</p>
+    <p>All three write the same <code>rainlog.json</code>, atomically and in two-space sorted JSON, so a synced folder — Syncthing, Resilio, a git repo, your sync software of choice — keeps every device current. The plugin watches the file; the server re-reads it every five seconds and, before writing, merges just the days it changed.</p>
     <p>Two devices writing at once is the only real way to lose a reading, so let sync settle before editing from the other side. Web-only settings and cached normals live in their own files beside the JSON.</p>
   </section>
 
