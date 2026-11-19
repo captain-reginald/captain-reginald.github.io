@@ -1,24 +1,28 @@
 # captain-reginald.github.io
 
-The two static sites served from this repo, via GitHub Pages:
+Two static sites served from this repo via GitHub Pages:
 
-- `/` — the landing page: a short blurb, the Rain Log project, and Captain's Cabin (Minecraft)
-- `/rainlog/` — overview of the three Rain Log releases (Omarchy plugin, server, desktop app) and how they share one data file
+- `/` — landing page: a short intro, Rain Log, and Captain's Cabin (Minecraft)
+- `/rainlog/` — the three Rain Log releases (Omarchy plugin, server, desktop app) and the shared data file
 
-Plain HTML and CSS. No build step, no dependencies, no JavaScript.
+Plain HTML and CSS, one stylesheet, no build step, no JavaScript.
 
 ## Publishing
 
-GitHub Pages serves the default branch from the repo root. Push to `main` and it is live:
+GitHub Pages serves `main` from the repo root. Push, and it is live:
 
 - <https://captain-reginald.github.io/>
 - <https://captain-reginald.github.io/rainlog/>
 
 ## Pending
 
-- **Discord invite link** — the landing page shows "invite link coming soon" as a placeholder on purpose. When the invite is final, edit `index.html` (the `#cabin` section, look for the `DISCORD-INVITE` comment) and swap the `<span class="pill">` for `<a href="https://discord.gg/…">Join the Discord</a>`. Discord's server verification handles gating; the page does not.
+**Discord invite link.** The landing page shows a "invite link coming soon" pill on purpose. When the invite is final, edit `index.html` (in the `#cabin` section; there is a `DISCORD-INVITE` comment) and replace the `<span class="soon">` with `<a href="https://discord.gg/…">Join the Discord</a>`. Access is gated by Discord's server verification, not by the page.
 
 ## Editing
 
-- Screenshots live in `rainlog/assets/` and were copied from the project repos (`rainlog-server/screenshots/`, `rainlog-desktop/docs/`, and `omarchy-rain-log`). If the apps change visually, re-copy and keep the filenames so the HTML doesn't need to change.
-- Both pages share the same design tokens (`--bg`, `--accent`, fonts) at the top of `style.css` and `rainlog/style.css` — update them in both places.
+- Shared styles: `/style.css` (design tokens at the top: background, text, accent, fonts).
+- Screenshots live in `rainlog/assets/`, copied from the project repos. Keep the filenames in place; the HTML references them directly.
+  - `plugin-*.png` from `omarchy-rain-log`
+  - `server-*.png` from `rainlog-server/screenshots/`
+  - `desktop-*.png` from `rainlog-desktop/docs/`
+- `404.html` is served by Pages for unknown paths.
