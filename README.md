@@ -20,7 +20,7 @@ GitHub Pages serves `main` from the repo root. Push, and it is live:
 
 ## Editing
 
-- Shared styles: `/style.css` (design tokens at the top: background, text, accent, fonts).
+- Shared styles: `/style.css` (design tokens at the top: background, text, accent, fonts). Pages caches it for 10 minutes, so after editing the CSS bump the `?v=` number on the `<link>` in all three HTML files; otherwise returning visitors keep the old rules.
 - Screenshots live in `rainlog/assets/`, copied from the project repos. Keep the filenames in place; the HTML references them directly.
   - `plugin-*.png` from `omarchy-rain-log`
   - `server-*.png` from `rainlog-server/screenshots/`
